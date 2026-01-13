@@ -1,0 +1,17 @@
+name: focusflow
+description: A simple Pomodoro timer app
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  # 应用图标
+  assets:
+    - assets/
