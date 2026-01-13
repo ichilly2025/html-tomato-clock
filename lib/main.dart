@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,7 +38,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
   int _totalSeconds = 25 * 60; // 默认25分钟（以秒为单位）
   bool _isRunning = false; // 计时器是否正在运行
   bool _isWorkMode = true; // true: 工作模式, false: 休息模式
-  late Timer _timer; // 计时器对象
+  Timer? _timer; // 计时器对象
 
   // 工作模式和休息模式的时间设置（秒）
   static const int workTime = 25 * 60; // 25分钟
@@ -51,7 +52,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -67,7 +68,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
           _totalSeconds--;
         } else {
           // 计时结束
-          _timer.cancel();
+          _timer?.cancel();
           _isRunning = false;
           _showCompletionDialog();
         }
@@ -80,7 +81,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
     setState(() {
       _isRunning = false;
     });
-    _timer.cancel();
+    _timer?.cancel();
   }
 
   // 重置计时器
@@ -89,7 +90,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
       _isRunning = false;
       _totalSeconds = _isWorkMode ? workTime : breakTime;
     });
-    _timer.cancel();
+    _timer?.cancel();
   }
 
   // 切换工作/休息模式
@@ -99,7 +100,7 @@ class _PomodoroTimerPageState extends State<PomodoroTimerPage> {
       _totalSeconds = _isWorkMode ? workTime : breakTime;
       _isRunning = false;
     });
-    _timer.cancel();
+    _timer?.cancel();
   }
 
   // 显示计时完成对话框

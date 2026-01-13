@@ -11,7 +11,3 @@ dependencies:
 
 flutter:
   uses-material-design: true
-
-  # 应用图标
-  assets:
-    - assets/
